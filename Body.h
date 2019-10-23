@@ -30,7 +30,7 @@ public:
     double calcCNB(double,double);     // OK
 
     Vector getDiameter() { return _bodyDiameter; }  // OK
-    Vector getHeight() { return _height; }
+    Vector getHeight() { return _height; }          //OK
 };
 
 

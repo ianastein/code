@@ -93,11 +93,40 @@ double Fin::calcCPF(){
     CP = ((_deltaB/3)*(_largerBase.y+2*_smallerBase.y)/(_largerBase.y+_smallerBase.y)) + ((1/6)*(pow(_largerBase.y,2)+pow(_smallerBase.y,2)+(_largerBase.y*_smallerBase.y))/(_largerBase.y+_smallerBase.y));
 
     return CP;
-
 }
 
 
-double Fin::calcCDPF(){
+double Fin::calcCDPF(double M){
+    double CDPF, CDle, CDte;
+
+    // calculation of CDle
+    if (M < 0.9){
+        CDle = pow((1-(M*M)),-0.417) - 1;
+    } else if (M >= 0.9 && M < 1){
+        CDle = 1 - 1.785*(M - 0.9);
+    } else if (M >= 1){
+        CDle = 1.214 - (0.502/pow(M,2)) + (0.1095/pow(M,4));
+    } else
+        CDle = 0;
+
+    // calculation of CDte
+    if (M < 1){
+        CDte = 0.12 + 0.13*pow(M,2);
+    } else if (M < 1){
+        CDte = 0.25/M;
+    } else
+        CDte = 0;
+
+    // calculation of CDPF
+    CDPF = CDle + CDte;
+
+    return CDPF;
+}
+
+double Fin::calcArea(){
+    double Area;
 
 
+
+    return Area;
 }

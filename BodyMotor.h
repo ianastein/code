@@ -24,7 +24,7 @@ public:
     double calcCNBM(double,double);     // OK
 
     Vector getDiameter() { return _bodyDiameter; }  // OK
-    Vector getHeight() { return _height; }
+    Vector getHeight() { return _height; }          // OK
 };
 
 #endif // BODYMOTOR_H_INCLUDED

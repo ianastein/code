@@ -26,28 +26,31 @@ public:
         // make it work
     ~Rocket(){};
 
-    double totalMass();     // OK
-    double totalVolume();   // OK
+    double totalMass();         // OK
+    double totalVolume();       // OK
 
-    Vector CG();        // TERMINAR
+    Vector CG();                // TERMINAR
     double CNalpha();
     Vector CP(int,bool);        // OK
-    double Cmalpha();   // OK
-    double CDPressure();
-    double CDFriction();
-    double calcCD();
+    double Cmalpha();           // OK
+    double CDFriction();        // OK
+    double calcCD(double,int);  // OK
     double calcPitchDamping();
 
-    double calcAlpha();     // OK
+    double calcAlpha();         // OK
     Vector calcCenterline();
 
-    double calcReynolds();    // OK
+    double calcReynolds();      // OK
 
 
     // FORCES CALCULATION
-    double normalForce(double, double); // OK
-    double moment(double, double);      // OK
-    double dragForce(double, double);   // OK
+    double normalForce(double,double);            // OK
+    double moment(double,double);                 // OK
+    double dragForce(double,double,double,int);   // OK
+    double angularVelocity();
+    double angularAceleration();
+    double velocityToMach();
+
 
 
     // SIMULATION

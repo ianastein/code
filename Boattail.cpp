@@ -74,3 +74,52 @@ double Boattail::calcCNBoattail(double alpha, double nose_base){
     }
     return CN;
 }
+
+double Boattail::calcCDPBoattail(double M){
+    double CDPB, CDbase, gama, Abase, Aboattail;
+
+    // calculation of CDbase
+    if (M < 1){
+        CDbase = 0.12 + 0.13*pow(M,2);
+    } else if (M < 1){
+        CDbase = 0.25/M;
+    } else
+        CDbase = 0;
+
+    // calculation of gama
+    gama = _height.y/(_largerDiameter.x - _smallerDiameter.x);
+
+    // calculation of Abase
+    Abase = pi*pow((_largerDiameter.x/2),2);
+
+    // calculation of Aboattail
+    double g, g2, sub;
+
+    sub = (_largerDiameter.x - _smallerDiameter.x)/2;
+    g2 = pow(_height.y,2) + pow(sub,2);
+    g = sqrt(g2);
+
+    Aboattail = pi*(_largerDiameter.x/2+_smallerDiameter.x/2)*g;
+
+    // calculation of CDPB
+    if (gama < 1){
+        CDPB = (Abase/Aboattail)*CDbase*1;
+    } else if (gama >= 1 && gama < 3){
+        CDPB = (Abase/Aboattail)*CDbase*(3-gama)/2;
+    } else
+        CDPB = 0;
+
+    return CDPB;
+}
+
+double Boattail::calcArea(){
+    double Area, g, g2, sub;
+
+    sub = (_largerDiameter.x - _smallerDiameter.x)/2;
+    g2 = pow(_height.y,2) + pow(sub,2);
+    g = sqrt(g2);
+
+    Area = pi*(_largerDiameter.x/2+_smallerDiameter.x/2)*g;
+
+    return Area;
+}

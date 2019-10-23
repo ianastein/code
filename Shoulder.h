@@ -25,9 +25,8 @@ public:
     Vector calcCGS(Vector,double,double,double);    // OK
     double calcCNS(double,double);
     double calcCPS();       // OK
-    double calcCDPS();
 
-    Vector getHeight() { return _height; }
+    Vector getHeight() { return _height; }          // OK
 };
 
 

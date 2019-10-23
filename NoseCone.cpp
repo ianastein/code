@@ -94,3 +94,9 @@ double NoseCone::calcCDPN(int shape, double angle){ // 1 FOR CONICAL, 2 FOR PARA
     return CDP;
 }
 
+double NoseCone::calcArea(){
+    double Area;
+
+    return Area;
+}
+

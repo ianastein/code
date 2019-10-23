@@ -149,6 +149,24 @@ double Rocket::CDFriction(){
     return CDF;
 }
 
+double Rocket::calcCD(double M, int shape){
+    double CD, Aref, Aboattail, Afin, Anose, cdpb, cdpf, cdpn, cdfriction;
+
+    Aref = _nose.getBaseDiameter().x;
+    Aboattail = _boattail.calcArea();
+    Afin = _fin.calcArea();
+    Anose = _nose.calcArea();
+
+    cdpb = _boattail.calcCDPBoattail(M);
+    cdpf = _fin.calcCDPF(M);
+    cdpn = _nose.calcCDPN(shape);
+    cdfriction = CDFriction();
+
+    CD = (Aboattail/Aref)*cdpb + (Afin/Aref)*cdpf + (Anose/Aref)*cdpn + cdfriction;
+
+    return CD;
+}
+
 double Rocket::CNalpha(){
     double CNalpha;
 
@@ -157,6 +175,8 @@ double Rocket::CNalpha(){
 
 double Rocket::normalForce(double ro, double speed){
     double normal, CN, Aref;
+
+    Aref = _nose.getBaseDiameter().x;
 
     CN = CNalpha();
     normal = CN*(1/2)*ro*(pow(speed,2))*Aref;
@@ -167,19 +187,23 @@ double Rocket::normalForce(double ro, double speed){
 double Rocket::moment(double ro, double speed){
     double moment, CM, Aref, d;
 
+    Aref = _nose.getBaseDiameter().x;
     CM = Cmalpha();
+
     moment = CM*(1/2)*ro*(pow(speed,2))*Aref*d;
 
     return moment;
 }
 
-double Rocket::dragForce(double ro, double speed){
+double Rocket::dragForce(double ro, double speed, double M, int shape){
     double drag, CD, Aref;
 
-    CD = calcCD();
+    Aref = _nose.getBaseDiameter().x;
+    CD = calcCD(M,shape);
+
     drag = CD*(1/2)*ro*(pow(speed,2))*Aref;
 
-    return CD;
+    return drag;
 }
 
 void Rocket::simulation(){

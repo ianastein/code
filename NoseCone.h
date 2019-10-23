@@ -33,6 +33,7 @@ public:
 
     Vector getBaseDiameter() { return _baseDiameter; }  // OK
     Vector getHeight() { return _height; }              // OK
+    double calcArea();
 };
 
 

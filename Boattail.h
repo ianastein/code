@@ -26,9 +26,10 @@ public:
     Vector calcCGBoattail(double,Vector);   // OK
     double calcCNBoattail(double,double);   // OK
     double calcCPBoattail();                // OK
-    double calcCDPBoattail();
+    double calcCDPBoattail(double);         // OK
 
-    Vector getHeight() { return _height; }
+    Vector getHeight() { return _height; }  // OK
+    double calcArea();                      // OK
 };
 
 

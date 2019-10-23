@@ -29,9 +29,10 @@ public:
     Vector calcCGF();               // OK
     double calcCNF(double,bool);    // OK
     double calcCPF();               // OK
-    double calcCDPF();
+    double calcCDPF(double);        // OK
 
     Vector getHeight() { return _height; }  // OK
+    double calcArea();
 };
 
 
